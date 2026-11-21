@@ -1,0 +1,28 @@
+@model List<JogoViewModel>
+@{
+    ViewData["Title"] = "Loja";
+}
+
+<section class="banner mb-4">
+    <h1>Os melhores games estão aqui</h1>
+    <p>PC, PlayStation, Xbox e Nintendo com entrega para todo o Brasil.</p>
+</section>
+
+<div class="filtros-vitrine row g-2 mb-4">
+    <div class="col-md-5">
+        <input type="text" id="filtroNome" class="form-control" placeholder="Buscar jogo..." onkeyup="filtraVitrine()" />
+    </div>
+    <div class="col-md-3">
+        <select id="filtroCategoria" class="form-select" asp-items="@ViewBag.Categorias" onchange="filtraVitrine()"></select>
+    </div>
+    <div class="col-md-3">
+        <select id="filtroPlataforma" class="form-select" asp-items="@ViewBag.Plataformas" onchange="filtraVitrine()"></select>
+    </div>
+    <div class="col-md-1">
+        <button class="btn btn-outline-light w-100" onclick="limpaFiltroVitrine()" title="Limpar filtros">✕</button>
+    </div>
+</div>
+
+<div id="vitrine">
+    <partial name="pvVitrine" model="Model" />
+</div>

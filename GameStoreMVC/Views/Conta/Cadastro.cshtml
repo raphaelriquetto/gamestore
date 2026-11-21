@@ -1,0 +1,17 @@
+@model ClienteViewModel
+@{
+    ViewData["Title"] = "Criar conta";
+}
+
+<div class="card card-detalhe">
+    <div class="card-body p-4">
+        <h3 class="mb-3">Criar conta</h3>
+        <form action="/conta/SalvarCadastro" method="post">
+            <partial name="_CamposCliente" model="Model" />
+            <div class="mt-3">
+                <input type="submit" value="Cadastrar" class="btn btn-warning" />
+                <a href="/home/index" class="btn btn-light">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>

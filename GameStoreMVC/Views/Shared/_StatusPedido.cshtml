@@ -1,0 +1,14 @@
+@model string
+@{
+    // cor do badge conforme o status
+    string cor;
+    switch (Model)
+    {
+        case "Pago": cor = "bg-primary"; break;
+        case "Enviado": cor = "bg-info text-dark"; break;
+        case "Entregue": cor = "bg-success"; break;
+        case "Cancelado": cor = "bg-danger"; break;
+        default: cor = "bg-warning text-dark"; break;
+    }
+}
+<span class="badge @cor">@Model</span>

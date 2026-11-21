@@ -1,0 +1,38 @@
+@model JogoViewModel
+@{
+    ViewData["Title"] = Model.Nome;
+}
+
+<a href="/home/index" class="text-light opacity-75">&larr; Voltar para a loja</a>
+
+<div class="card card-detalhe mt-3">
+    <div class="row g-0">
+        <div class="col-md-5">
+            <img src="@Model.ImagemSrc" class="img-fluid rounded-start w-100" alt="@Model.Nome" />
+        </div>
+        <div class="col-md-7">
+            <div class="card-body p-4">
+                <span class="badge bg-dark">@Model.NomePlataforma</span>
+                <span class="badge bg-secondary">@Model.NomeCategoria</span>
+                <h2 class="mt-2">@Model.Nome</h2>
+                <p class="text-muted">Lançamento: @Model.DataLancamento.ToShortDateString()</p>
+                <p>@Model.Descricao</p>
+
+                <div class="preco fs-2 mb-3">@(Model.Preco == 0 ? "Grátis" : Model.Preco.ToString("C"))</div>
+
+                @if (Model.Estoque > 0)
+                {
+                    <p class="text-success">@Model.Estoque unidade(s) em estoque</p>
+                    <div class="input-group" style="max-width: 320px">
+                        <input type="number" id="qtdeDetalhe" class="form-control" value="1" min="1" max="@Model.Estoque" />
+                        <button class="btn btn-warning" onclick="adicionarCarrinho(@Model.Id, document.getElementById('qtdeDetalhe').value, true)">Adicionar ao carrinho</button>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-danger fw-bold">Produto esgotado</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

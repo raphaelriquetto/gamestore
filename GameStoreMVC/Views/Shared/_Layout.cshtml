@@ -1,0 +1,73 @@
+﻿@{
+    // layout da área do cliente
+    string nomeCliente = Context.Session.GetString("ClienteNome");
+    int qtdeCarrinho = HelperControllers.QtdeItensCarrinho(Context.Session);
+}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@(ViewData["Title"] ?? "GameStore") - GameStore</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @RenderSection("Styles", false)
+</head>
+<body class="area-cliente">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-loja sticky-top">
+        <div class="container">
+            <a class="navbar-brand logo" asp-controller="Home" asp-action="Index">🎮 Game<span>Store</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuCliente">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menuCliente">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Loja</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Sobre">Sobre</a></li>
+                    @if (nomeCliente != null)
+                    {
+                        <li class="nav-item"><a class="nav-link" asp-controller="Conta" asp-action="MeusPedidos">Meus pedidos</a></li>
+                    }
+                </ul>
+                <ul class="navbar-nav align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Carrinho" asp-action="Index">
+                            🛒 Carrinho <span id="qtdeCarrinho" class="badge rounded-pill bg-warning text-dark">@qtdeCarrinho</span>
+                        </a>
+                    </li>
+                    @if (nomeCliente != null)
+                    {
+                        <li class="nav-item"><span class="nav-link text-light">Olá, @nomeCliente</span></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Conta" asp-action="LogOff">Sair</a></li>
+                    }
+                    else
+                    {
+                        <li class="nav-item"><a class="nav-link" asp-controller="Conta" asp-action="Login">Entrar</a></li>
+                        <li class="nav-item"><a class="btn btn-sm btn-warning ms-lg-2" asp-controller="Conta" asp-action="Cadastro">Criar conta</a></li>
+                    }
+                    <li class="nav-item"><a class="nav-link text-secondary small" asp-controller="Login" asp-action="Index">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        <partial name="_Mensagens" />
+        @RenderBody()
+    </main>
+
+    <footer class="rodape">
+        <div class="container">
+            &copy; 2026 GameStore - Trabalho de Linguagem de Programação I -
+            <a asp-controller="Home" asp-action="Sobre">Sobre</a>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast-loja"></div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

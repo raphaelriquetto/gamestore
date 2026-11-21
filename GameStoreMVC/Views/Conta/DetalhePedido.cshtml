@@ -1,0 +1,16 @@
+@model PedidoViewModel
+@{
+    ViewData["Title"] = "Pedido " + Model.Id;
+}
+
+<div class="card card-detalhe">
+    <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3>Pedido nº @Model.Id</h3>
+            <partial name="_StatusPedido" model="Model.Status" />
+        </div>
+        <p class="text-muted">Realizado em @Model.Data.ToString("dd/MM/yyyy HH:mm")</p>
+        <partial name="_ItensPedido" model="Model" />
+        <a href="/conta/MeusPedidos" class="btn btn-light mt-3">Meus pedidos</a>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+# Pastas geradas na compilação
+[Bb]in/
+[Oo]bj/
+publicado/
+
+# Visual Studio / Rider / VS Code
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userprefs
+*.rsuser
+
+# Pacotes NuGet baixados (são restaurados automaticamente)
+packages/
+*.nupkg
+
+# Logs e arquivos temporários
+*.log
+*.tmp
+TestResults/
+
+# Arquivos do sistema
+Thumbs.db
+Desktop.ini
+.DS_Store

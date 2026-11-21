@@ -1,0 +1,34 @@
+@{
+    ViewData["Title"] = "Consulta de pedidos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<fieldset id="areaFiltro" class="form-group">
+    <legend>Consulta avançada de pedidos</legend>
+    <div class="row g-2 align-items-end">
+        <div class="col-lg-4">
+            Cliente<br />
+            <input type="text" id="nomeCliente" class="form-control" placeholder="Nome do cliente" />
+        </div>
+        <div class="col-lg-2">
+            Status<br />
+            <select id="status" class="form-select" asp-items="@ViewBag.ListaStatus"></select>
+        </div>
+        <div class="col-lg-2">
+            Período<br />
+            <input type="date" id="dataInicial" class="form-control" />
+        </div>
+        <div class="col-lg-2">
+            <input type="date" id="dataFinal" class="form-control" />
+        </div>
+        <div class="col-lg-2">
+            <input type="button" id="btnFiltro" class="btn btn-success w-100" value="Aplicar" onclick="aplicaFiltroConsultaPedidos()" />
+        </div>
+    </div>
+</fieldset>
+
+<div id="resultadoConsulta" class="table-responsive"></div>
+
+@section Scripts {
+    <script>aplicaFiltroConsultaPedidos();</script>
+}

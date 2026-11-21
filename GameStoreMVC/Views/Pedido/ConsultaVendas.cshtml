@@ -1,0 +1,38 @@
+@{
+    ViewData["Title"] = "Consulta de jogos vendidos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<fieldset id="areaFiltro" class="form-group">
+    <legend>Consulta avançada de jogos vendidos</legend>
+    <div class="row g-2 align-items-end">
+        <div class="col-lg-3">
+            Jogo<br />
+            <input type="text" id="nomeJogo" class="form-control" placeholder="Nome do jogo" />
+        </div>
+        <div class="col-lg-2">
+            Categoria<br />
+            <select id="categoriaId" class="form-select" asp-items="@ViewBag.Categorias"></select>
+        </div>
+        <div class="col-lg-2">
+            Plataforma<br />
+            <select id="plataformaId" class="form-select" asp-items="@ViewBag.Plataformas"></select>
+        </div>
+        <div class="col-lg-2">
+            Período<br />
+            <input type="date" id="dataInicial" class="form-control" />
+        </div>
+        <div class="col-lg-2">
+            <input type="date" id="dataFinal" class="form-control" />
+        </div>
+        <div class="col-lg-1">
+            <input type="button" id="btnFiltro" class="btn btn-success w-100" value="Aplicar" onclick="aplicaFiltroConsultaVendas()" />
+        </div>
+    </div>
+</fieldset>
+
+<div id="resultadoConsulta" class="table-responsive"></div>
+
+@section Scripts {
+    <script>aplicaFiltroConsultaVendas();</script>
+}

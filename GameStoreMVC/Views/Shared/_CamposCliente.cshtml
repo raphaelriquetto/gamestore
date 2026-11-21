@@ -1,0 +1,57 @@
+@model ClienteViewModel
+@* campos do cliente usados no cadastro do admin e no cadastro feito pelo próprio cliente *@
+<div class="row g-3">
+    <div class="col-md-6">
+        <label for="Nome" class="form-label">Nome completo</label>
+        <input asp-for="Nome" class="form-control" maxlength="100" />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label for="Email" class="form-label">E-mail</label>
+        <input asp-for="Email" type="email" class="form-control" maxlength="100" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label for="Senha" class="form-label">Senha</label>
+        <input type="password" name="Senha" class="form-control" placeholder="@(ViewBag.Operacao == "A" ? "Em branco mantém a atual" : "Mínimo 4 caracteres")" />
+        <span asp-validation-for="Senha" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label for="Cpf" class="form-label">CPF</label>
+        <input asp-for="Cpf" class="form-control" maxlength="14" placeholder="000.000.000-00" />
+        <span asp-validation-for="Cpf" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label for="Telefone" class="form-label">Telefone</label>
+        <input asp-for="Telefone" class="form-control" maxlength="20" />
+    </div>
+    <div class="col-md-3">
+        <label for="Cep" class="form-label">CEP</label>
+        <div class="input-group">
+            <input asp-for="Cep" class="form-control" maxlength="9" onblur="buscaCEP()" />
+            <button type="button" class="btn btn-outline-secondary" onclick="buscaCEP()">Buscar</button>
+        </div>
+        <span asp-validation-for="Cep" class="text-danger"></span>
+    </div>
+    <div class="col-md-7">
+        <label for="Logradouro" class="form-label">Logradouro</label>
+        <input asp-for="Logradouro" class="form-control" maxlength="100" />
+    </div>
+    <div class="col-md-2">
+        <label for="Numero" class="form-label">Número</label>
+        <input asp-for="Numero" class="form-control" maxlength="10" />
+    </div>
+    <div class="col-md-5">
+        <label for="Bairro" class="form-label">Bairro</label>
+        <input asp-for="Bairro" class="form-control" maxlength="50" />
+    </div>
+    <div class="col-md-5">
+        <label for="Cidade" class="form-label">Cidade</label>
+        <input asp-for="Cidade" class="form-control" maxlength="50" />
+    </div>
+    <div class="col-md-2">
+        <label for="Uf" class="form-label">UF</label>
+        <input asp-for="Uf" class="form-control" maxlength="2" />
+        <span asp-validation-for="Uf" class="text-danger"></span>
+    </div>
+</div>

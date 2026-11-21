@@ -1,0 +1,43 @@
+@model List<JogoViewModel>
+@{
+    ViewData["Title"] = "Jogos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Jogos</h2>
+    <a href="/jogo/create" class="btn btn-primary">+ Novo jogo</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover align-middle bg-white shadow-sm">
+        <tr class="table-dark">
+            <th style="width: 180px">Ações</th>
+            <th>Código</th>
+            <th>Imagem</th>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Plataforma</th>
+            <th>Lançamento</th>
+            <th class="text-end">Preço</th>
+            <th class="text-end">Estoque</th>
+        </tr>
+        @foreach (var jogo in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/jogo/Edit?id=@jogo.Id" class="btn btn-sm btn-info">Editar</a>
+                    <a href="javascript:apagarRegistro('jogo', @jogo.Id)" class="btn btn-sm btn-danger">Apagar</a>
+                </td>
+                <td>@jogo.Id</td>
+                <td><img src="@jogo.ImagemSrc" class="miniatura" alt="@jogo.Nome" /></td>
+                <td>@jogo.Nome</td>
+                <td>@jogo.CategoriaId - @jogo.NomeCategoria</td>
+                <td>@jogo.PlataformaId - @jogo.NomePlataforma</td>
+                <td>@jogo.DataLancamento.ToShortDateString()</td>
+                <td class="text-end">@jogo.Preco.ToString("C")</td>
+                <td class="text-end @(jogo.Estoque == 0 ? "text-danger fw-bold" : "")">@jogo.Estoque</td>
+            </tr>
+        }
+    </table>
+</div>

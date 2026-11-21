@@ -1,0 +1,61 @@
+@model List<ItemCarrinhoViewModel>
+@{
+    ViewData["Title"] = "Carrinho";
+}
+
+<div class="card card-detalhe">
+    <div class="card-body p-4">
+        <h3 class="mb-3">🛒 Meu carrinho</h3>
+
+        @if (Model.Count == 0)
+        {
+            <p>Seu carrinho está vazio. <a href="/home/index">Ir para a loja</a></p>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <tr>
+                        <th>Jogo</th>
+                        <th class="text-end">Preço</th>
+                        <th style="width: 130px">Quantidade</th>
+                        <th class="text-end">Subtotal</th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@item.ImagemSrc" class="miniatura me-2" />
+                                @item.Nome
+                            </td>
+                            <td class="text-end">@item.Preco.ToString("C")</td>
+                            <td>
+                                <input type="number" min="1" value="@item.Quantidade" class="form-control form-control-sm"
+                                       onchange="alterarQtdeCarrinho(@item.JogoId, this)" />
+                            </td>
+                            <td class="text-end" id="subtotal_@item.JogoId">@item.Subtotal.ToString("C")</td>
+                            <td><a href="/carrinho/Remover?jogoId=@item.JogoId" class="btn btn-sm btn-outline-danger">Remover</a></td>
+                        </tr>
+                    }
+                    <tr class="fw-bold fs-5">
+                        <td colspan="3" class="text-end">Total</td>
+                        <td class="text-end" id="totalCarrinho">@(((decimal)ViewBag.Total).ToString("C"))</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <a href="/home/index" class="btn btn-light">Continuar comprando</a>
+                <form action="/carrinho/EfetuarPedido" method="post">
+                    @if (Context.Session.GetInt32("ClienteId") == null)
+                    {
+                        <span class="me-2 text-muted">Você precisa entrar para finalizar.</span>
+                    }
+                    <input type="submit" value="Finalizar pedido" class="btn btn-success btn-lg" />
+                </form>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,31 @@
+@model List<PlataformaViewModel>
+@{
+    ViewData["Title"] = "Plataformas";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Plataformas</h2>
+    <a href="/plataforma/create" class="btn btn-primary">+ Nova plataforma</a>
+</div>
+
+<table class="table table-hover align-middle bg-white shadow-sm">
+    <tr class="table-dark">
+        <th style="width: 180px">Ações</th>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Fabricante</th>
+    </tr>
+    @foreach (var plataforma in Model)
+    {
+        <tr>
+            <td>
+                <a href="/plataforma/Edit?id=@plataforma.Id" class="btn btn-sm btn-info">Editar</a>
+                <a href="javascript:apagarRegistro('plataforma', @plataforma.Id)" class="btn btn-sm btn-danger">Apagar</a>
+            </td>
+            <td>@plataforma.Id</td>
+            <td>@plataforma.Nome</td>
+            <td>@plataforma.Fabricante</td>
+        </tr>
+    }
+</table>

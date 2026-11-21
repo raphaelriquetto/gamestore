@@ -1,0 +1,33 @@
+@model List<PedidoViewModel>
+@{
+    ViewData["Title"] = "Pedidos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="mb-3">Pedidos</h2>
+
+<div class="table-responsive">
+    <table class="table table-hover align-middle bg-white shadow-sm">
+        <tr class="table-dark">
+            <th>Ações</th>
+            <th>Nº</th>
+            <th>Data</th>
+            <th>Cliente</th>
+            <th class="text-end">Itens</th>
+            <th class="text-end">Total</th>
+            <th>Status</th>
+        </tr>
+        @foreach (var pedido in Model)
+        {
+            <tr>
+                <td><a href="/pedido/Detalhes?id=@pedido.Id" class="btn btn-sm btn-info">Detalhes</a></td>
+                <td>@pedido.Id</td>
+                <td>@pedido.Data.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@pedido.ClienteId - @pedido.NomeCliente</td>
+                <td class="text-end">@pedido.QtdeItens</td>
+                <td class="text-end">@pedido.ValorTotal.ToString("C")</td>
+                <td><partial name="_StatusPedido" model="pedido.Status" /></td>
+            </tr>
+        }
+    </table>
+</div>

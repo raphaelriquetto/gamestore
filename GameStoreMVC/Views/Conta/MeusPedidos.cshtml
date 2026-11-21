@@ -1,0 +1,38 @@
+@model List<PedidoViewModel>
+@{
+    ViewData["Title"] = "Meus pedidos";
+}
+
+<div class="card card-detalhe">
+    <div class="card-body p-4">
+        <h3 class="mb-3">Meus pedidos</h3>
+        @if (Model.Count == 0)
+        {
+            <p>Você ainda não fez nenhum pedido. <a href="/home/index">Ir para a loja</a></p>
+        }
+        else
+        {
+            <table class="table table-hover align-middle">
+                <tr>
+                    <th>Nº</th>
+                    <th>Data</th>
+                    <th class="text-end">Itens</th>
+                    <th class="text-end">Total</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+                @foreach (var pedido in Model)
+                {
+                    <tr>
+                        <td>@pedido.Id</td>
+                        <td>@pedido.Data.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td class="text-end">@pedido.QtdeItens</td>
+                        <td class="text-end">@pedido.ValorTotal.ToString("C")</td>
+                        <td><partial name="_StatusPedido" model="pedido.Status" /></td>
+                        <td><a href="/conta/DetalhePedido?id=@pedido.Id" class="btn btn-sm btn-outline-dark">Ver</a></td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</div>

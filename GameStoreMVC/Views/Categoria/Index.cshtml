@@ -1,0 +1,29 @@
+@model List<CategoriaViewModel>
+@{
+    ViewData["Title"] = "Categorias";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Categorias</h2>
+    <a href="/categoria/create" class="btn btn-primary">+ Nova categoria</a>
+</div>
+
+<table class="table table-hover align-middle bg-white shadow-sm">
+    <tr class="table-dark">
+        <th style="width: 180px">Ações</th>
+        <th>Código</th>
+        <th>Nome</th>
+    </tr>
+    @foreach (var categoria in Model)
+    {
+        <tr>
+            <td>
+                <a href="/categoria/Edit?id=@categoria.Id" class="btn btn-sm btn-info">Editar</a>
+                <a href="javascript:apagarRegistro('categoria', @categoria.Id)" class="btn btn-sm btn-danger">Apagar</a>
+            </td>
+            <td>@categoria.Id</td>
+            <td>@categoria.Nome</td>
+        </tr>
+    }
+</table>

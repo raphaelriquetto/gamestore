@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+        <div class="card shadow">
+            <div class="card-body p-4">
+                <h3 class="mb-3">Área administrativa</h3>
+                <form action="/login/FazLogin" method="post">
+                    <label for="usuario" class="form-label">Usuário</label>
+                    <input type="text" name="usuario" id="usuario" class="form-control" required placeholder="Usuário..." />
+                    <br />
+                    <label for="senha" class="form-label">Senha</label>
+                    <input type="password" name="senha" id="senha" class="form-control" required placeholder="Senha..." />
+                    <br />
+                    <input type="submit" value="Entrar" class="btn btn-success w-100" />
+                    <span class="text-danger d-block mt-2">@ViewBag.Erro</span>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

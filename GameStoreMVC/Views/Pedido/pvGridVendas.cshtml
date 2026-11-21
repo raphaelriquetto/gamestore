@@ -1,0 +1,35 @@
+@model List<PedidoItemViewModel>
+
+<table class="table table-striped bg-white shadow-sm">
+    <tr class="table-dark">
+        <th>Pedido</th>
+        <th>Data</th>
+        <th>Cliente</th>
+        <th>Jogo</th>
+        <th>Categoria</th>
+        <th>Plataforma</th>
+        <th class="text-end">Qtde</th>
+        <th class="text-end">Valor unit.</th>
+        <th class="text-end">Subtotal</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td><a href="/pedido/Detalhes?id=@item.PedidoId">@item.PedidoId</a></td>
+            <td>@item.DataPedido.ToString("dd/MM/yyyy")</td>
+            <td>@item.NomeCliente</td>
+            <td>@item.NomeJogo</td>
+            <td>@item.NomeCategoria</td>
+            <td>@item.NomePlataforma</td>
+            <td class="text-end">@item.Qtde</td>
+            <td class="text-end">@item.ValorUnitario.ToString("C")</td>
+            <td class="text-end">@item.Subtotal.ToString("C")</td>
+        </tr>
+    }
+    <tr class="fw-bold">
+        <td colspan="6">@Model.Count registro(s) encontrado(s)</td>
+        <td class="text-end">@Model.Sum(i => i.Qtde)</td>
+        <td></td>
+        <td class="text-end">@Model.Sum(i => i.Subtotal).ToString("C")</td>
+    </tr>
+</table>

@@ -1,0 +1,24 @@
+@model PedidoViewModel
+<table class="table table-striped mb-0">
+    <tr>
+        <th>Jogo</th>
+        <th>Plataforma</th>
+        <th class="text-end">Qtde</th>
+        <th class="text-end">Valor unit.</th>
+        <th class="text-end">Subtotal</th>
+    </tr>
+    @foreach (var item in Model.Itens)
+    {
+        <tr>
+            <td>@item.JogoId - @item.NomeJogo</td>
+            <td>@item.NomePlataforma</td>
+            <td class="text-end">@item.Qtde</td>
+            <td class="text-end">@item.ValorUnitario.ToString("C")</td>
+            <td class="text-end">@item.Subtotal.ToString("C")</td>
+        </tr>
+    }
+    <tr class="fw-bold">
+        <td colspan="4" class="text-end">Total</td>
+        <td class="text-end">@Model.ValorTotal.ToString("C")</td>
+    </tr>
+</table>

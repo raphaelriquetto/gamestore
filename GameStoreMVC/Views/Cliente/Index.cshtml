@@ -1,0 +1,39 @@
+@model List<ClienteViewModel>
+@{
+    ViewData["Title"] = "Clientes";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Clientes</h2>
+    <a href="/cliente/create" class="btn btn-primary">+ Novo cliente</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover align-middle bg-white shadow-sm">
+        <tr class="table-dark">
+            <th style="width: 180px">Ações</th>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>Cidade/UF</th>
+        </tr>
+        @foreach (var cliente in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/cliente/Edit?id=@cliente.Id" class="btn btn-sm btn-info">Editar</a>
+                    <a href="javascript:apagarRegistro('cliente', @cliente.Id)" class="btn btn-sm btn-danger">Apagar</a>
+                </td>
+                <td>@cliente.Id</td>
+                <td>@cliente.Nome</td>
+                <td>@cliente.Email</td>
+                <td>@cliente.Cpf</td>
+                <td>@cliente.Telefone</td>
+                <td>@cliente.Cidade/@cliente.Uf</td>
+            </tr>
+        }
+    </table>
+</div>

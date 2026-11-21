@@ -1,0 +1,24 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Erro";
+    // usa o layout do admin quando o erro acontece na área administrativa
+    if (ViewBag.Logado == true)
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+}
+
+<h2 class="text-danger">Um erro ocorreu durante o processamento da sua requisição.</h2>
+
+@if (Model != null && !string.IsNullOrEmpty(Model.Erro))
+{
+    <p>
+        <strong>Detalhes do erro:</strong>
+        <pre class="bg-dark text-warning p-3 rounded small"><code>@Model.Erro</code></pre>
+    </p>
+}
+@if (Model != null && Model.ShowRequestId)
+{
+    <p><strong>Request ID:</strong> <code>@Model.RequestId</code></p>
+}
+<a href="javascript:history.back()" class="btn btn-secondary">Voltar</a>

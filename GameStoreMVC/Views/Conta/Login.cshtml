@@ -1,0 +1,26 @@
+@{
+    ViewData["Title"] = "Entrar";
+}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-5">
+        <div class="card card-detalhe">
+            <div class="card-body p-4">
+                <h3 class="mb-3">Entrar na sua conta</h3>
+                <form action="/conta/FazLogin" method="post">
+                    <input type="hidden" name="retorno" value="@ViewBag.Retorno" />
+                    <label for="email" class="form-label">E-mail</label>
+                    <input type="email" name="email" id="email" class="form-control" required placeholder="seu@email.com" />
+                    <br />
+                    <label for="senha" class="form-label">Senha</label>
+                    <input type="password" name="senha" id="senha" class="form-control" required />
+                    <br />
+                    <input type="submit" value="Entrar" class="btn btn-warning w-100" />
+                    <span class="text-danger d-block mt-2">@ViewBag.Erro</span>
+                </form>
+                <hr />
+                <p class="mb-0">Ainda não tem conta? <a href="/conta/cadastro">Cadastre-se</a></p>
+            </div>
+        </div>
+    </div>
+</div>

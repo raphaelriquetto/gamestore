@@ -1,0 +1,30 @@
+@model List<PedidoViewModel>
+
+<table class="table table-striped bg-white shadow-sm">
+    <tr class="table-dark">
+        <th>Nº</th>
+        <th>Data</th>
+        <th>Cliente</th>
+        <th class="text-end">Itens</th>
+        <th class="text-end">Total</th>
+        <th>Status</th>
+        <th></th>
+    </tr>
+    @foreach (var pedido in Model)
+    {
+        <tr>
+            <td>@pedido.Id</td>
+            <td>@pedido.Data.ToString("dd/MM/yyyy HH:mm")</td>
+            <td>@pedido.NomeCliente</td>
+            <td class="text-end">@pedido.QtdeItens</td>
+            <td class="text-end">@pedido.ValorTotal.ToString("C")</td>
+            <td><partial name="_StatusPedido" model="pedido.Status" /></td>
+            <td><a href="/pedido/Detalhes?id=@pedido.Id" class="btn btn-sm btn-outline-primary">Abrir</a></td>
+        </tr>
+    }
+    <tr class="fw-bold">
+        <td colspan="4">@Model.Count pedido(s) encontrado(s)</td>
+        <td class="text-end">@Model.Sum(p => p.ValorTotal).ToString("C")</td>
+        <td colspan="2"></td>
+    </tr>
+</table>

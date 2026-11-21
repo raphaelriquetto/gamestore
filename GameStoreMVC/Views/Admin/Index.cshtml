@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Início";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Bem-vindo(a), @Context.Session.GetString("NomeAdmin")!</h2>
+<p class="text-muted">Resumo da loja carregado via AJAX a partir das APIs de relatório.</p>
+
+<div class="row g-3 mb-4" id="cardsResumo">
+    <div class="col-6 col-lg"><div class="card card-resumo"><div class="card-body"><small>Pedidos</small><h3 id="resTotalPedidos">...</h3></div></div></div>
+    <div class="col-6 col-lg"><div class="card card-resumo"><div class="card-body"><small>Faturamento</small><h3 id="resFaturamento">...</h3></div></div></div>
+    <div class="col-6 col-lg"><div class="card card-resumo"><div class="card-body"><small>Ticket médio</small><h3 id="resTicketMedio">...</h3></div></div></div>
+    <div class="col-6 col-lg"><div class="card card-resumo"><div class="card-body"><small>Clientes</small><h3 id="resTotalClientes">...</h3></div></div></div>
+    <div class="col-6 col-lg"><div class="card card-resumo"><div class="card-body"><small>Jogos</small><h3 id="resTotalJogos">...</h3></div></div></div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header fw-bold">Vendas por categoria</div>
+            <div class="card-body" id="vendasCategoria">Carregando...</div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header fw-bold">Top 5 jogos mais vendidos</div>
+            <div class="card-body" id="maisVendidos">Carregando...</div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mt-2">
+    <div class="col-md-3"><a class="btn btn-outline-dark w-100" href="/jogo/index">Gerenciar jogos</a></div>
+    <div class="col-md-3"><a class="btn btn-outline-dark w-100" href="/pedido/index">Ver pedidos</a></div>
+    <div class="col-md-3"><a class="btn btn-outline-dark w-100" href="/pedido/ConsultaPedidos">Consultar pedidos</a></div>
+    <div class="col-md-3"><a class="btn btn-outline-dark w-100" href="/pedido/ConsultaVendas">Consultar jogos vendidos</a></div>
+</div>
+
+@section Scripts {
+    <script>carregaDashboard();</script>
+}
